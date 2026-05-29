@@ -1,0 +1,37 @@
+---
+interface Props {
+  sub: string;
+  subJp: string;
+  rootHref?: string;
+  backHref?: string;
+}
+
+const {
+  sub,
+  subJp,
+  rootHref = 'https://fujioha.com/',
+  backHref = rootHref,
+} = Astro.props;
+---
+
+<header class="pc-top">
+  <div class="pc-top-inner">
+    <nav class="pc-crumb">
+      <a class="pc-crumb-root" href={rootHref}>
+        <span class="pc-mark-dot"></span>
+        <span class="pc-mark-name">fujioha</span>
+      </a>
+      <span class="pc-crumb-sep">/</span>
+      <span class="pc-crumb-here">
+        <span class="pc-mono fp-mono">{sub}</span>
+        <span class="pc-crumb-jp fp-jp">{subJp}</span>
+      </span>
+    </nav>
+    <div class="pc-top-right">
+      <a class="pc-link" href={backHref}>
+        <span class="fp-jp">通りへ戻る</span>
+        <span class="fp-en fp-mute"> · back to the alley</span>
+      </a>
+    </div>
+  </div>
+</header>

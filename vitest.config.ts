@@ -5,18 +5,20 @@ export default defineConfig({
     globals: true,
     environment: 'node',
     include: [
-      'src/**/*.{test,spec}.{ts,tsx}',
-      'tests/**/*.{test,spec}.{ts,tsx}',
+      'apps/*/src/**/*.{test,spec}.{ts,tsx}',
+      'packages/*/src/**/*.{test,spec}.{ts,tsx}',
     ],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
       exclude: [
         'node_modules/**',
-        'dist/**',
+        '**/dist/**',
+        '**/.astro/**',
         '.steering/**',
-        '**/*.config.{ts,js}',
+        '**/*.config.{ts,js,mjs}',
         '**/types/**',
+        'docs/**',
       ],
       thresholds: {
         branches: 80,

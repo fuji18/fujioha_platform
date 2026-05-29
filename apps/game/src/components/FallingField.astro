@@ -1,0 +1,63 @@
+---
+// Static grid of "falling" blocks behind the hero.
+const C = 34;
+type Block = readonly [number, number, string];
+const blocks: readonly Block[] = [
+  [2, 1, '#c96442'],
+  [3, 1, '#c96442'],
+  [3, 2, '#c96442'],
+  [8, 0, '#f6d472'],
+  [9, 0, '#f6d472'],
+  [9, 1, '#f6d472'],
+  [10, 1, '#f6d472'],
+  [13, 3, '#7fc99a'],
+  [13, 4, '#7fc99a'],
+  [14, 4, '#7fc99a'],
+  [14, 5, '#7fc99a'],
+  [6, 5, '#7fb0d6'],
+  [6, 6, '#7fb0d6'],
+  [7, 6, '#7fb0d6'],
+  [17, 2, '#d68fb0'],
+  [18, 2, '#d68fb0'],
+  [17, 3, '#d68fb0'],
+  [18, 3, '#d68fb0'],
+];
+
+const rows = Array.from({ length: 24 }, (_, r) => r);
+const cols = Array.from({ length: 22 }, (_, c) => c);
+---
+
+<svg
+  viewBox="0 0 760 380"
+  preserveAspectRatio="xMidYMid slice"
+  style="width: 100%; height: 100%;"
+  aria-hidden="true"
+>
+  {
+    rows.flatMap((r) =>
+      cols.map((c) => (
+        <rect
+          x={c * C + 4}
+          y={r * C + 4}
+          width="1.5"
+          height="1.5"
+          fill="#fff"
+          opacity=".08"
+        />
+      ))
+    )
+  }
+  {
+    blocks.map(([x, y, fill]) => (
+      <rect
+        x={x * C}
+        y={y * C}
+        width={C - 3}
+        height={C - 3}
+        rx="2"
+        fill={fill}
+        opacity=".9"
+      />
+    ))
+  }
+</svg>

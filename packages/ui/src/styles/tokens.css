@@ -1,0 +1,71 @@
+/* Shared design tokens for the fujioha.com network.
+   Each app may override these in its own global.css. */
+:root {
+  --accent: #c96442;
+  --paper: #fbf8f3;
+  --ink: #1f1a14;
+  --ink-soft: #3a3329;
+  --mute: #6b6358;
+  --faint: #b0a896;
+  --rule: #e3dbca;
+
+  --jp: 'Shippori Mincho B1', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  --jp-sans:
+    'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+  --en: 'Newsreader', 'Source Serif Pro', Georgia, serif;
+  --en-body: 'Zen Kaku Gothic New', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --maxw: 1180px;
+
+  /* Chrome background defaults — each app overrides for dark themes. */
+  --chrome-bg: var(--paper);
+  --chrome-bg-elevated: color-mix(in oklch, var(--accent) 4%, var(--paper));
+  --chrome-blur: blur(10px);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.fp-jp {
+  font-family: var(--jp-sans);
+  font-feature-settings: 'palt';
+}
+.fp-en {
+  font-family: var(--en-body);
+}
+.fp-mono {
+  font-family: var(--mono);
+  letter-spacing: 0.01em;
+}
+.fp-mute {
+  color: var(--mute);
+}
+.fp-faint {
+  color: var(--faint);
+}
+.pc-arrow {
+  transition: transform 0.2s;
+  display: inline-block;
+}
+
+.lang-jp .fp-en {
+  display: none !important;
+}
+.lang-en .fp-jp {
+  display: none !important;
+}

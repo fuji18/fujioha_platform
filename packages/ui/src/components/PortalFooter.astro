@@ -1,0 +1,64 @@
+---
+interface Props {
+  sub: string;
+  siblingSub: string;
+  siblingJp: string;
+  siblingEn: string;
+  siblingHref: string;
+  rootHref?: string;
+  author?: string;
+  startYear?: number;
+}
+
+const {
+  sub,
+  siblingSub,
+  siblingJp,
+  siblingEn,
+  siblingHref,
+  rootHref = 'https://fujioha.com/',
+  author = '@fuji',
+  startYear = 2024,
+} = Astro.props;
+
+const endYear = new Date().getFullYear();
+const yearLabel = endYear === startYear ? `${startYear}` : `${startYear}–${endYear}`;
+---
+
+<footer class="pc-footer">
+  <div class="pc-footer-inner">
+    <div class="pc-footer-cross">
+      <div class="pc-footer-eyebrow fp-mono">
+        ふじおはの、ほかの店 · elsewhere on fujioha
+      </div>
+      <a class="pc-cross-card" href={siblingHref}>
+        <div class="pc-cross-sub fp-mono">{siblingSub}.fujioha.com</div>
+        <div class="pc-cross-jp fp-jp">{siblingJp}</div>
+        <div class="pc-cross-en fp-en fp-mute">{siblingEn}</div>
+        <div class="pc-cross-go">
+          <span class="fp-jp">のぞいてみる</span>
+          <span class="pc-arrow">→</span>
+        </div>
+      </a>
+      <a class="pc-cross-card pc-cross-root" href={rootHref}>
+        <div class="pc-cross-sub fp-mono">fujioha.com</div>
+        <div class="pc-cross-jp fp-jp">通りのトップへ</div>
+        <div class="pc-cross-en fp-en fp-mute">The morning portal</div>
+        <div class="pc-cross-go">
+          <span class="fp-jp">戻る</span>
+          <span class="pc-arrow">→</span>
+        </div>
+      </a>
+    </div>
+    <div class="pc-footer-base">
+      <div class="pc-footer-mark">
+        <span class="pc-mark-dot"></span>
+        <span class="pc-mark-name">fujioha</span>
+        <span class="pc-footer-sub fp-mono fp-faint">/ {sub}</span>
+      </div>
+      <div class="pc-footer-meta fp-mono fp-faint">
+        © {yearLabel} · by {author}
+      </div>
+    </div>
+  </div>
+</footer>

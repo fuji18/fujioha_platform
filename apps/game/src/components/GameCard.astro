@@ -1,0 +1,39 @@
+---
+import GameIcon from './GameIcon.astro';
+import type { Game } from '../lib/games';
+
+type Props = Game;
+
+const { jp, en, genre, genreEn, time, tag, icon, hue } = Astro.props;
+---
+
+<a class="gm-card" href="#">
+  <div class="gm-card-art" style={`--hue: ${hue}`}>
+    <GameIcon kind={icon} hue={hue} />
+    {
+      tag && (
+        <span class={`gm-card-flag gm-flag-${tag}`}>
+          {tag === 'new' ? 'NEW' : 'WIP'}
+        </span>
+      )
+    }
+  </div>
+  <div class="gm-card-body">
+    <h3 class="gm-card-jp fp-jp">{jp}</h3>
+    <p class="gm-card-en fp-en fp-mute">{en}</p>
+    <div class="gm-card-foot">
+      <span class="gm-card-genre">
+        <span class="fp-jp">{genre}</span>
+        <span class="fp-en fp-faint"> · {genreEn}</span>
+      </span>
+      <span class="gm-card-time fp-mono fp-faint">{time}</span>
+    </div>
+    <div class="gm-card-play">
+      <span class="gm-play-icon">▶</span>
+      <span class="fp-jp">{tag === 'wip' ? '準備中' : '遊ぶ'}</span>
+      <span class="fp-en fp-mute">
+        {tag === 'wip' ? 'Coming soon' : 'Play'}
+      </span>
+    </div>
+  </div>
+</a>

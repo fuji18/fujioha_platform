@@ -1,0 +1,31 @@
+---
+import FallingField from './FallingField.astro';
+import { GAMES } from '../lib/games';
+---
+
+<section class="gm-hero">
+  <div class="gm-hero-grid" aria-hidden="true">
+    <FallingField />
+  </div>
+  <div class="gm-hero-inner">
+    <div class="gm-eyebrow fp-mono">game.fujioha.com · あそびば</div>
+    <h1 class="gm-title">
+      <span class="gm-title-jp fp-jp">思いつきの</span>
+      <span class="gm-title-en">Web Games</span>
+    </h1>
+    <p class="gm-lede">
+      <span class="fp-jp"
+        >ジャンルはばらばら。ブラウザを開けば、その場で遊べる小さなゲームの棚です。だいたい一分で終わります。</span
+      >
+      <span class="fp-en fp-mute"
+        >A shelf of small browser games — different shapes, different rules,
+        no installs. Most of them end in about a minute.</span
+      >
+    </p>
+    <div class="gm-hero-meta">
+      <span class="gm-chip fp-mono">{GAMES.length} games</span>
+      <span class="gm-chip fp-mono">no install · ブラウザで完結</span>
+      <span class="gm-chip fp-mono">free</span>
+    </div>
+  </div>
+</section>

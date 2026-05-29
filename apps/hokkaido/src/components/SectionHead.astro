@@ -1,0 +1,24 @@
+---
+interface Props {
+  eyebrow: string;
+  jp: string;
+  en: string;
+}
+
+const { eyebrow, jp, en } = Astro.props;
+---
+
+<div class="hk-head">
+  <div>
+    <div class="hk-eyebrow fp-mono">{eyebrow}</div>
+    <h2 class="hk-h2 fp-jp">{jp}</h2>
+    <p class="hk-h2-en fp-en fp-mute">{en}</p>
+  </div>
+  {
+    Astro.slots.has('right') && (
+      <div class="hk-head-right">
+        <slot name="right" />
+      </div>
+    )
+  }
+</div>
