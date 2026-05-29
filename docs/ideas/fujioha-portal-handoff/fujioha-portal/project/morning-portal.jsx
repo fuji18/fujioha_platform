@@ -244,7 +244,6 @@ function TopBar({ now, mood }) {
       <div className="fp-mark">
         <span className="fp-mark-dot" />
         <span className="fp-mark-name">fujioha</span>
-        <span className="fp-mark-meta wf-en">— 十八番 × おはよう</span>
       </div>
       <div className="fp-topbar-right">
         <span className="fp-mono fp-faint">{hh}:{mm} JST</span>
@@ -283,7 +282,7 @@ function Hero({ greeting, mood, visitPhrase, now, kou }) {
         <p className="fp-intro">
           <span className="fp-jp">小さなウェブを集めた個人の場所。今のところ、北海道の歩き方と、思いついた Web ゲームが住んでいます。</span>
           <span className="fp-en fp-mute">
-            A small home for two sites — a Hokkaido travel guide and a shelf of little web games — by <u>@nickname</u>.
+            A small home for two sites — a Hokkaido travel guide and a shelf of little web games — by <u>@fuji</u>.
           </span>
         </p>
         <div className="fp-hero-meta">
@@ -522,7 +521,7 @@ function AlleySection() {
     { jp: '北海道', en: 'Hokkaido',  sub: 'hokkaido', tag: 'travel · guide', color: 'var(--accent)' },
     { jp: 'ゲーム', en: 'Games',     sub: 'game',     tag: 'play · web',    color: '#2a4a6b' },
     { jp: '準備中', en: 'Coming',    sub: '?',        tag: 'coming soon',     color: '#8a8377', dashed: true },
-    { jp: '店主',   en: 'Shopkeeper', sub: 'about',    tag: '@nickname',     color: '#3e3a32' },
+    { jp: '店主',   en: 'Shopkeeper', sub: 'about',    tag: '@fuji',     color: '#3e3a32' },
     { jp: '日誌',   en: 'Journal',    sub: 'journal',  tag: 'notes',          color: '#5a6b4a', dashed: true },
   ];
   return (
@@ -625,18 +624,9 @@ function SiteFooter() {
         <div className="fp-footer-mark">
           <span className="fp-mark-dot" />
           <span className="fp-mark-name">fujioha</span>
-          <span
-            className="fp-etymology"
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-          >
-            {hover
-              ? <span className="fp-mono">= 十八番 (signature) + おはよう (good morning)</span>
-              : <span className="fp-mono fp-faint">= ?</span>}
-          </span>
         </div>
         <div className="fp-footer-meta fp-mono fp-faint">
-          © 2024–{new Date().getFullYear()} · by @nickname
+          © 2024–{new Date().getFullYear()} · by @fuji
         </div>
       </div>
     </footer>

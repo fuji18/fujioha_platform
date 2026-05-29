@@ -122,7 +122,7 @@ function ConceptA() {
             Currently
           </div>
           <div style={{ fontSize: 12 }}>2 sites · last updated 2 days ago</div>
-          <div style={{ fontSize: 12 }}>by <u>@nickname</u> · since 2024</div>
+          <div style={{ fontSize: 12 }}>by <u>@fuji</u> · since 2024</div>
         </div>
       </section>
 
@@ -302,9 +302,6 @@ function ConceptC() {
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
         <div>
           <div style={{ fontSize: 18, fontWeight: 600 }}>fujioha</div>
-          <div className="wf-mute" style={{ fontSize: 11, marginTop: 2 }}>
-            n. 十八番 + おはよう · /fu.dʑi.o.ha/
-          </div>
         </div>
         <div className="wf-mute" style={{ fontSize: 11 }}>
           updated 2026-05-23
@@ -318,7 +315,7 @@ function ConceptC() {
         <div style={{ fontSize: 13, lineHeight: 1.7, maxWidth: 560 }}>
           A small index of things I make on the web.
           ウェブで作ったもののささやかな目次。
-          Run by <u>@nickname</u> — tokyo &amp; hokkaido. Mostly tinkering after work.
+          Run by <u>@fuji</u> — tokyo &amp; hokkaido. Mostly tinkering after work.
         </div>
       </section>
 
@@ -389,9 +386,9 @@ function ConceptC() {
       <section style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: 24 }}>
         <div className="wf-mute" style={{ fontSize: 11, paddingTop: 3 }}>contact</div>
         <div style={{ fontSize: 12.5 }}>
-          <span className="wf-mute">[at]</span> nickname<span className="wf-mute">@fujioha.com</span> ·{' '}
-          <span className="wf-mute">[bsky]</span> @nickname.bsky.social ·{' '}
-          <span className="wf-mute">[gh]</span> nickname
+          <span className="wf-mute">[at]</span> fuji<span className="wf-mute">@fujioha.com</span> ·{' '}
+          <span className="wf-mute">[bsky]</span> @fuji.bsky.social ·{' '}
+          <span className="wf-mute">[gh]</span> fuji
         </div>
       </section>
 
@@ -474,7 +471,7 @@ function ConceptD() {
           <NorenCurtain
             label="店主"
             sub="about"
-            tagline="@nickname"
+            tagline="@fuji"
             color="#3e3a32"
           />
         </div>
@@ -484,10 +481,7 @@ function ConceptD() {
       <section style={{ paddingTop: 36, display: 'flex', justifyContent: 'space-between',
         alignItems: 'baseline', borderTop: '1px solid #d8d4cc', marginTop: 16, paddingTop: 14 }}>
         <div className="wf-mute" style={{ fontSize: 11 }}>
-          店主より — by @nickname · since 2024
-        </div>
-        <div className="wf-mute wf-mono" style={{ fontSize: 10.5 }}>
-          fujioha = 十八番 (signature) + おはよう (good morning)
+          店主より — by @fuji · since 2024
         </div>
       </section>
 
@@ -671,7 +665,7 @@ function ConceptE() {
 
           <div style={{ marginTop: 'auto' }}>
             <div className="wf-faint wf-mono" style={{ fontSize: 9.5 }}>
-              by @nickname · since 2024
+              by @fuji · since 2024
             </div>
           </div>
         </aside>
