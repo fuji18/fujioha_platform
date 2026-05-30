@@ -1,14 +1,9 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": [
-    "dist",
-    "node_modules",
-    ".steering",
-    "docs/ideas/fujioha-portal-handoff/**"
-  ],
-  "compilerOptions": {
-    "types": ["node"],
-    "allowJs": true
-  }
+  "files": [],
+  "references": [
+    { "path": "./apps/portal" },
+    { "path": "./apps/hokkaido" },
+    { "path": "./apps/game" },
+    { "path": "./packages/ui" }
+  ]
 }

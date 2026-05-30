@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>北海道の歩き方 — hokkaido.fujioha.com</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --accent:#c96442;
+      --paper:#fbf8f3;
+      --ink:#1f1a14;
+      --ink-soft:#3a3329;
+      --mute:#6b6358;
+      --faint:#b0a896;
+      --rule:#e3dbca;
+      --jp:'Shippori Mincho B1','Hiragino Mincho ProN','Yu Mincho',serif;
+      --jp-sans:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN',sans-serif;
+      --en:'Newsreader','Source Serif Pro',Georgia,serif;
+      --en-body:'Zen Kaku Gothic New',system-ui,sans-serif;
+      --mono:'JetBrains Mono',ui-monospace,monospace;
+      --maxw:1180px;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);
+      font-family:var(--en-body);font-size:16px;line-height:1.65;
+      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+    a{color:inherit;text-decoration:none}
+
+    .fp-jp{font-family:var(--jp-sans);font-feature-settings:"palt"}
+    .fp-en{font-family:var(--en-body)}
+    .fp-mono{font-family:var(--mono);letter-spacing:.01em}
+    .fp-mute{color:var(--mute)}
+    .fp-faint{color:var(--faint)}
+    .pc-arrow{transition:transform .2s;display:inline-block}
+
+    /* language toggle hooks (parity with root, default bilingual) */
+    .lang-jp .fp-en{display:none !important}
+    .lang-en .fp-jp{display:none !important}
+
+    /* ── Shared chrome (pc-) ──────────────────────────────── */
+    .pc-top{border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:50;
+      background:color-mix(in oklch,var(--paper) 88%,transparent);backdrop-filter:blur(10px)}
+    .pc-top-inner{max-width:var(--maxw);margin:0 auto;padding:16px 48px;
+      display:flex;justify-content:space-between;align-items:center}
+    .pc-crumb{display:flex;align-items:center;gap:12px;font-size:13px}
+    .pc-crumb-root{display:inline-flex;align-items:center;gap:8px;opacity:.78;transition:opacity .15s}
+    .pc-crumb-root:hover{opacity:1}
+    .pc-mark-dot{width:12px;height:12px;border-radius:50%;background:var(--accent);
+      box-shadow:0 0 0 3px color-mix(in oklch,var(--accent) 16%,transparent)}
+    .pc-mark-name{font-family:var(--en);font-weight:600;font-size:16px}
+    .pc-crumb-sep{color:var(--faint)}
+    .pc-crumb-here{display:inline-flex;align-items:center;gap:10px}
+    .pc-crumb-here .pc-mono{font-family:var(--mono);font-size:12.5px;color:var(--mute)}
+    .pc-crumb-jp{font-size:13.5px;color:var(--ink)}
+    .pc-link{font-size:13px;color:var(--ink-soft);border-bottom:1px solid transparent;
+      padding-bottom:1px;transition:color .15s,border-color .15s}
+    .pc-link:hover{color:var(--accent);border-color:var(--accent)}
+
+    .pc-footer{border-top:1px solid var(--rule);margin-top:40px;background:color-mix(in oklch,var(--accent) 4%,var(--paper))}
+    .pc-footer-inner{max-width:var(--maxw);margin:0 auto;padding:48px 48px 56px}
+    .pc-footer-eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--mute);margin-bottom:18px}
+    .pc-footer-cross{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .pc-footer-eyebrow{grid-column:1/-1}
+    .pc-cross-card{border:1px solid var(--rule);border-radius:4px;padding:22px 24px;
+      background:var(--paper);transition:transform .2s,border-color .2s,box-shadow .2s;
+      display:flex;flex-direction:column;gap:4px}
+    .pc-cross-card:hover{transform:translateY(-2px);border-color:var(--accent);
+      box-shadow:0 12px 30px -20px rgba(0,0,0,.3)}
+    .pc-cross-sub{font-size:12px;color:var(--mute)}
+    .pc-cross-jp{font-family:var(--jp);font-weight:500;font-size:20px;margin-top:2px}
+    .pc-cross-en{font-family:var(--en);font-style:italic;font-size:13.5px}
+    .pc-cross-go{margin-top:12px;display:flex;align-items:center;gap:8px;
+      font-size:13px;color:var(--accent);font-weight:500}
+    .pc-cross-card:hover .pc-arrow{transform:translateX(4px)}
+    .pc-footer-base{display:flex;justify-content:space-between;align-items:center;
+      margin-top:36px;padding-top:24px;border-top:1px solid var(--rule)}
+    .pc-footer-mark{display:flex;align-items:center;gap:10px}
+    .pc-footer-sub{font-size:12px;margin-left:2px}
+    .pc-footer-meta{font-size:11.5px}
+
+    /* ── Hokkaido page (hk-) ──────────────────────────────── */
+    .hk-section{max-width:var(--maxw);margin:0 auto;padding:62px 48px}
+    .hk-eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+      color:var(--mute);margin-bottom:14px}
+    .hk-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
+      padding-bottom:26px;border-bottom:1px solid var(--rule);margin-bottom:34px}
+    .hk-h2{font-family:var(--jp);font-weight:500;font-size:30px;line-height:1.3;margin:0;
+      letter-spacing:.01em}
+    .hk-h2-en{font-family:var(--en);font-style:italic;font-size:16px;margin:6px 0 0}
+
+    /* Hero */
+    .hk-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--rule)}
+    .hk-hero-art{position:absolute;inset:0;z-index:0}
+    .hk-scene{width:100%;height:100%;display:block;opacity:.96}
+    .hk-hero-art::after{content:"";position:absolute;inset:0;
+      background:linear-gradient(105deg,
+        color-mix(in oklch,var(--paper) 94%,transparent) 0%,
+        color-mix(in oklch,var(--paper) 82%,transparent) 42%,
+        transparent 78%)}
+    .hk-hero-inner{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;
+      padding:96px 48px 84px}
+    .hk-title{font-family:var(--jp);font-weight:600;font-size:80px;line-height:1.04;
+      margin:8px 0 0;letter-spacing:.02em}
+    .hk-title-en{font-family:var(--en);font-style:italic;font-size:21px;color:var(--ink-soft);
+      margin:16px 0 0}
+    .hk-lede{max-width:480px;margin:26px 0 0;font-size:15px;line-height:1.8;color:var(--ink-soft)}
+    .hk-lede .fp-en{display:block;margin-top:6px;font-size:13.5px}
+    .hk-hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+    .hk-chip{font-size:11.5px;padding:6px 12px;border:1px solid var(--rule);border-radius:999px;
+      background:color-mix(in oklch,var(--paper) 70%,transparent);color:var(--ink-soft)}
+
+    /* Featured */
+    .hk-feature{display:grid;grid-template-columns:1.05fr 1fr;border:1px solid var(--rule);
+      border-radius:5px;overflow:hidden;background:var(--paper)}
+    .hk-feature-art{min-height:380px}
+    .hk-feature-body{padding:42px 44px;display:flex;flex-direction:column;gap:14px}
+    .hk-feature-meta{display:flex;align-items:center;gap:12px}
+    .hk-feature-jp{font-family:var(--jp);font-weight:500;font-size:32px;line-height:1.3;margin:0}
+    .hk-feature-en{font-family:var(--en);font-style:italic;font-size:17px;color:var(--mute);margin:0}
+    .hk-feature-lead{font-size:14.5px;line-height:1.85;color:var(--ink-soft);margin:6px 0 0}
+    .hk-feature-lead .fp-en{display:block;margin-top:8px;font-size:13px}
+    .hk-readmore{margin-top:auto;padding-top:18px;display:inline-flex;align-items:center;gap:12px;
+      color:var(--accent);font-weight:500;font-size:14px}
+    .hk-readmore .fp-en{font-family:var(--en);font-style:italic;font-weight:400}
+    .hk-feature:hover .pc-arrow{transform:translateX(4px)}
+    .hk-tag{font-size:11px;padding:3px 10px;border-radius:2px;font-family:var(--jp-sans);
+      background:color-mix(in oklch,var(--accent) 13%,transparent);color:var(--accent);font-weight:500}
+    .hk-tag-soft{background:color-mix(in oklch,var(--ink) 6%,transparent);color:var(--mute)}
+
+    /* Cities */
+    .hk-cities{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .hk-city{border:1px solid var(--rule);border-radius:4px;padding:22px 24px;background:var(--paper);
+      transition:transform .2s,border-color .2s,box-shadow .2s;display:flex;flex-direction:column;gap:5px}
+    .hk-city:hover{transform:translateY(-2px);border-color:var(--accent);
+      box-shadow:0 12px 30px -22px rgba(0,0,0,.3)}
+    .hk-city-top{display:flex;justify-content:space-between;align-items:baseline}
+    .hk-city-jp{font-family:var(--jp);font-weight:500;font-size:24px}
+    .hk-city-n{font-size:13px;color:var(--accent);font-weight:500}
+    .hk-city-en{font-family:var(--en);font-style:italic;font-size:14px;color:var(--mute)}
+    .hk-city-note{font-size:12.5px;margin-top:4px;line-height:1.6}
+
+    /* Themes */
+    .hk-themes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .hk-theme{position:relative;border:1px solid var(--rule);border-radius:4px;padding:24px 24px;
+      background:var(--paper);overflow:hidden;display:flex;flex-direction:column;gap:4px;
+      transition:transform .2s,border-color .2s}
+    .hk-theme::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+      background:var(--accent);opacity:.0;transition:opacity .2s}
+    .hk-theme:hover{transform:translateY(-2px);border-color:var(--accent)}
+    .hk-theme:hover::before{opacity:.7}
+    .hk-theme-jp{font-family:var(--jp);font-weight:500;font-size:18px}
+    .hk-theme-en{font-family:var(--en);font-style:italic;font-size:13px}
+    .hk-theme-arrow{position:absolute;right:20px;top:24px;color:var(--accent);
+      opacity:0;transition:opacity .2s,transform .2s}
+    .hk-theme:hover .hk-theme-arrow{opacity:1;transform:translateX(3px)}
+
+    /* Recent list */
+    .hk-list{list-style:none;margin:0;padding:0}
+    .hk-list-item{display:grid;grid-template-columns:96px 150px 1fr 56px;gap:20px;
+      align-items:baseline;padding:20px 8px;border-bottom:1px dashed var(--rule);transition:background .15s}
+    .hk-list-item:hover{background:color-mix(in oklch,var(--accent) 4%,transparent)}
+    .hk-list-date{font-size:12px}
+    .hk-list-tags{display:flex;gap:6px;flex-wrap:wrap}
+    .hk-list-title{display:flex;flex-direction:column;gap:2px}
+    .hk-list-jp{font-family:var(--jp);font-weight:500;font-size:17px;line-height:1.4}
+    .hk-list-en{font-family:var(--en);font-style:italic;font-size:13px}
+    .hk-list-read{font-size:11.5px;text-align:right}
+    .hk-head-right{padding-bottom:4px}
+
+    /* Local / author */
+    .hk-local-card{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;
+      border:1px solid var(--rule);border-radius:5px;padding:36px 40px;
+      background:color-mix(in oklch,var(--accent) 5%,var(--paper))}
+    .hk-local-avatar{width:104px;height:104px;border-radius:50%;overflow:hidden;
+      border:1px solid var(--rule);flex:0 0 auto}
+    .hk-local-text{font-size:15px;line-height:1.85;color:var(--ink-soft);margin:8px 0 0;max-width:680px}
+    .hk-local-text .fp-en{display:block;margin-top:10px;font-size:13.5px}
+    .hk-local-sign{font-size:12.5px;margin-top:14px}
+
+    @media (max-width:900px){
+      .hk-title{font-size:54px}
+      .hk-feature{grid-template-columns:1fr}
+      .hk-feature-art{min-height:240px}
+      .hk-cities,.hk-themes{grid-template-columns:1fr 1fr}
+      .pc-footer-cross{grid-template-columns:1fr}
+      .hk-list-item{grid-template-columns:80px 1fr;gap:8px}
+      .hk-list-tags,.hk-list-read{display:none}
+      .hk-local-card{grid-template-columns:1fr;text-align:left}
+    }
+  </style>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="portal-chrome.jsx"></script>
+  <script type="text/babel" src="hokkaido.jsx"></script>
+  <script type="text/babel">
+    ReactDOM.createRoot(document.getElementById('root')).render(<HokkaidoPage />);
+  </script>
+</body>
+</html>

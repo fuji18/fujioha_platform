@@ -1,0 +1,436 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--en-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Hokkaido page (hk-) ──────────────────────────────── */
+.hk-section {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 62px 48px;
+}
+.hk-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 14px;
+}
+.hk-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 34px;
+}
+.hk-h2 {
+  font-family: var(--jp);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.3;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+.hk-h2-en {
+  font-family: var(--en);
+  font-style: italic;
+  font-size: 16px;
+  margin: 6px 0 0;
+}
+.hk-head-right {
+  padding-bottom: 4px;
+}
+
+/* Hero */
+.hk-hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--rule);
+}
+.hk-hero-art {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hk-scene {
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0.96;
+}
+.hk-hero-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    color-mix(in oklch, var(--paper) 94%, transparent) 0%,
+    color-mix(in oklch, var(--paper) 82%, transparent) 42%,
+    transparent 78%
+  );
+}
+.hk-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 96px 48px 84px;
+}
+.hk-title {
+  font-family: var(--jp);
+  font-weight: 600;
+  font-size: 80px;
+  line-height: 1.04;
+  margin: 8px 0 0;
+  letter-spacing: 0.02em;
+}
+.hk-title-en {
+  font-family: var(--en);
+  font-style: italic;
+  font-size: 21px;
+  color: var(--ink-soft);
+  margin: 16px 0 0;
+}
+.hk-lede {
+  max-width: 480px;
+  margin: 26px 0 0;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+.hk-lede .fp-en {
+  display: block;
+  margin-top: 6px;
+  font-size: 13.5px;
+}
+.hk-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+}
+.hk-chip {
+  font-size: 11.5px;
+  padding: 6px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--paper) 70%, transparent);
+  color: var(--ink-soft);
+}
+
+/* Featured */
+.hk-feature {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  overflow: hidden;
+  background: var(--paper);
+}
+.hk-feature-art {
+  min-height: 380px;
+}
+.hk-feature-body {
+  padding: 42px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.hk-feature-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hk-feature-jp {
+  font-family: var(--jp);
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.3;
+  margin: 0;
+}
+.hk-feature-en {
+  font-family: var(--en);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--mute);
+  margin: 0;
+}
+.hk-feature-lead {
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  margin: 6px 0 0;
+}
+.hk-feature-lead .fp-en {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+}
+.hk-readmore {
+  margin-top: auto;
+  padding-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--accent);
+  font-weight: 500;
+  font-size: 14px;
+}
+.hk-readmore .fp-en {
+  font-family: var(--en);
+  font-style: italic;
+  font-weight: 400;
+}
+.hk-feature:hover .pc-arrow {
+  transform: translateX(4px);
+}
+.hk-tag {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-family: var(--jp-sans);
+  background: color-mix(in oklch, var(--accent) 13%, transparent);
+  color: var(--accent);
+  font-weight: 500;
+}
+.hk-tag-soft {
+  background: color-mix(in oklch, var(--ink) 6%, transparent);
+  color: var(--mute);
+}
+
+/* Cities */
+.hk-cities {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.hk-city {
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 22px 24px;
+  background: var(--paper);
+  transition:
+    transform 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+.hk-city:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 30px -22px rgba(0, 0, 0, 0.3);
+}
+.hk-city-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.hk-city-jp {
+  font-family: var(--jp);
+  font-weight: 500;
+  font-size: 24px;
+}
+.hk-city-n {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 500;
+}
+.hk-city-en {
+  font-family: var(--en);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--mute);
+}
+.hk-city-note {
+  font-size: 12.5px;
+  margin-top: 4px;
+  line-height: 1.6;
+}
+
+/* Themes */
+.hk-themes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.hk-theme {
+  position: relative;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 24px 24px;
+  background: var(--paper);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+  cursor: pointer;
+}
+.hk-theme::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.hk-theme:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+.hk-theme:hover::before {
+  opacity: 0.7;
+}
+.hk-theme-jp {
+  font-family: var(--jp);
+  font-weight: 500;
+  font-size: 18px;
+}
+.hk-theme-en {
+  font-family: var(--en);
+  font-style: italic;
+  font-size: 13px;
+}
+.hk-theme-arrow {
+  position: absolute;
+  right: 20px;
+  top: 24px;
+  color: var(--accent);
+  opacity: 0;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+}
+.hk-theme:hover .hk-theme-arrow {
+  opacity: 1;
+  transform: translateX(3px);
+}
+
+/* Recent list */
+.hk-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.hk-list-item {
+  display: grid;
+  grid-template-columns: 96px 150px 1fr 56px;
+  gap: 20px;
+  align-items: baseline;
+  padding: 20px 8px;
+  border-bottom: 1px dashed var(--rule);
+  transition: background 0.15s;
+}
+.hk-list-item:hover {
+  background: color-mix(in oklch, var(--accent) 4%, transparent);
+}
+.hk-list-date {
+  font-size: 12px;
+}
+.hk-list-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.hk-list-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.hk-list-jp {
+  font-family: var(--jp);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.4;
+}
+.hk-list-en {
+  font-family: var(--en);
+  font-style: italic;
+  font-size: 13px;
+}
+.hk-list-read {
+  font-size: 11.5px;
+  text-align: right;
+}
+
+/* Local / author */
+.hk-local-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  align-items: center;
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  padding: 36px 40px;
+  background: color-mix(in oklch, var(--accent) 5%, var(--paper));
+}
+.hk-local-avatar {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  flex: 0 0 auto;
+}
+.hk-local-text {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  margin: 8px 0 0;
+  max-width: 680px;
+}
+.hk-local-text .fp-en {
+  display: block;
+  margin-top: 10px;
+  font-size: 13.5px;
+}
+.hk-local-sign {
+  font-size: 12.5px;
+  margin-top: 14px;
+}
+
+@media (max-width: 900px) {
+  .hk-title {
+    font-size: 54px;
+  }
+  .hk-feature {
+    grid-template-columns: 1fr;
+  }
+  .hk-feature-art {
+    min-height: 240px;
+  }
+  .hk-cities,
+  .hk-themes {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hk-list-item {
+    grid-template-columns: 80px 1fr;
+    gap: 8px;
+  }
+  .hk-list-tags,
+  .hk-list-read {
+    display: none;
+  }
+  .hk-local-card {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+}

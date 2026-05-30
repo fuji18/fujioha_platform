@@ -1,0 +1,23 @@
+---
+import SectionHead from './SectionHead.astro';
+import { HOK_THEMES } from '../lib/themes';
+---
+
+<section class="hk-section">
+  <SectionHead
+    eyebrow="テーマから探す · Browse by theme"
+    jp="気分で選ぶなら。"
+    en="Or pick by mood."
+  />
+  <div class="hk-themes">
+    {
+      HOK_THEMES.map((t) => (
+        <a class={`hk-theme hk-theme-${t.k}`} href="#">
+          <span class="hk-theme-jp fp-jp">{t.jp}</span>
+          <span class="hk-theme-en fp-en fp-mute">{t.en}</span>
+          <span class="hk-theme-arrow pc-arrow">→</span>
+        </a>
+      ))
+    }
+  </div>
+</section>

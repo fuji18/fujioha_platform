@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PortalTop from '@fujioha/ui/components/PortalTop.astro';
+import PortalFooter from '@fujioha/ui/components/PortalFooter.astro';
+import Hero from '../components/Hero.astro';
+import Featured from '../components/Featured.astro';
+import Shelf from '../components/Shelf.astro';
+import Note from '../components/Note.astro';
+---
+
+<BaseLayout>
+  <div class="gm">
+    <PortalTop sub="game" subJp="Web ゲーム" />
+    <Hero />
+    <Featured />
+    <Shelf />
+    <Note />
+    <PortalFooter
+      sub="game"
+      siblingSub="hokkaido"
+      siblingJp="北海道の歩き方"
+      siblingEn="Hokkaido, by a local"
+      siblingHref="https://hokkaido.fujioha.com/"
+    />
+  </div>
+</BaseLayout>
