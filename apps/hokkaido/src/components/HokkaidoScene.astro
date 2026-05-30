@@ -1,0 +1,61 @@
+---
+// Layered snowy-mountain horizon with morning sun.
+---
+
+<svg
+  viewBox="0 0 900 600"
+  class="hk-scene"
+  preserveAspectRatio="xMidYMid slice"
+  aria-hidden="true"
+>
+  <defs>
+    <linearGradient id="hk-sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fde6c8" />
+      <stop offset="55%" stop-color="#f6ddc2" />
+      <stop offset="100%" stop-color="#f3ece0" />
+    </linearGradient>
+    <linearGradient id="hk-far" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#cdbfae" />
+      <stop offset="100%" stop-color="#e6dcce" />
+    </linearGradient>
+  </defs>
+  <rect width="900" height="600" fill="url(#hk-sky)" />
+  <circle cx="650" cy="170" r="74" fill="var(--accent)" opacity=".82" />
+  <path
+    d="M0 360 L150 300 L300 350 L460 280 L620 340 L780 270 L900 320 L900 600 L0 600 Z"
+    fill="url(#hk-far)"
+  />
+  <path
+    d="M0 460 L120 360 L210 410 L320 320 L430 400 L560 300 L680 390 L800 330 L900 380 L900 600 L0 600 Z"
+    fill="#ffffff"
+    opacity=".92"
+    stroke="#1f1a14"
+    stroke-width=".6"
+    stroke-opacity=".25"
+  />
+  <path
+    d="M320 320 L380 360 L430 400 L320 400 Z"
+    fill="#1f1a14"
+    opacity=".06"
+  />
+  <path
+    d="M560 300 L620 345 L680 390 L560 390 Z"
+    fill="#1f1a14"
+    opacity=".06"
+  />
+  <path
+    d="M0 520 L300 500 L600 515 L900 495 L900 600 L0 600 Z"
+    fill="#1f1a14"
+    opacity=".08"
+  />
+  {
+    [80, 200, 360, 520, 700, 820].map((x, i) => (
+      <g transform={`translate(${x},${510 - (i % 3) * 6})`} opacity=".55">
+        <path
+          d="M0 0 L-7 14 L-3 14 L-9 26 L-3 26 L-11 40 L11 40 L3 26 L9 26 L3 14 L7 14 Z"
+          fill="#1f1a14"
+        />
+      </g>
+    ))
+  }
+</svg>

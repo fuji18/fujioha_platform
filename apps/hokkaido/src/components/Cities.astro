@@ -1,0 +1,26 @@
+---
+import SectionHead from './SectionHead.astro';
+import { HOK_CITIES } from '../lib/cities';
+---
+
+<section class="hk-section">
+  <SectionHead
+    eyebrow="街から探す · Browse by city"
+    jp="どの街へ行きますか。"
+    en="Where are you headed?"
+  />
+  <div class="hk-cities">
+    {
+      HOK_CITIES.map((c) => (
+        <a class="hk-city" href="#">
+          <div class="hk-city-top">
+            <span class="hk-city-jp fp-jp">{c.jp}</span>
+            <span class="hk-city-n fp-mono">{c.n}</span>
+          </div>
+          <div class="hk-city-en fp-en">{c.en}</div>
+          <div class="hk-city-note fp-jp fp-mute">{c.note}</div>
+        </a>
+      ))
+    }
+  </div>
+</section>

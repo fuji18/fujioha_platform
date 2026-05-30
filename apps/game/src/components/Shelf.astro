@@ -1,0 +1,30 @@
+---
+import SectionHead from './SectionHead.astro';
+import GameCard from './GameCard.astro';
+import { GAMES, GENRES } from '../lib/games';
+---
+
+<section class="gm-section">
+  <SectionHead
+    eyebrow="ぜんぶの棚 · The shelf"
+    jp="ほかのゲーム。"
+    en="Everything else on the shelf."
+  >
+    <div slot="right" class="gm-filters">
+      {
+        GENRES.map((g, i) => (
+          <button
+            type="button"
+            class={`gm-filter ${i === 0 ? 'is-on' : ''}`}
+            disabled
+          >
+            {g}
+          </button>
+        ))
+      }
+    </div>
+  </SectionHead>
+  <div class="gm-grid">
+    {GAMES.map((g) => <GameCard {...g} />)}
+  </div>
+</section>

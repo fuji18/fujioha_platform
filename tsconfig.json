@@ -1,0 +1,9 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./apps/portal" },
+    { "path": "./apps/hokkaido" },
+    { "path": "./apps/game" },
+    { "path": "./packages/ui" }
+  ]
+}
