@@ -1,0 +1,55 @@
+---
+// 準備中（Coming soon）案内。記事が整うまでトップに表示する。
+---
+
+<section class="hk-section hk-coming">
+  <div class="hk-coming-card">
+    <div class="hk-eyebrow fp-mono">準備中 · Coming soon</div>
+    <h2 class="hk-coming-jp fp-jp">このサイトは準備中です。</h2>
+    <p class="hk-coming-lead">
+      <span class="fp-jp"
+        >札幌と千歳を中心に、観光ガイドには載らない地元の歩き方をまとめています。公開まで、いましばらくお待ちください。</span
+      >
+      <span class="fp-en fp-mute"
+        >We're putting this guide together — starting with Sapporo and Chitose.
+        Please check back soon.</span
+      >
+    </p>
+  </div>
+</section>
+
+<style>
+  .hk-coming-card {
+    border: 1px dashed var(--rule);
+    border-radius: 6px;
+    padding: 48px 44px;
+    background: color-mix(in oklch, var(--accent) 5%, var(--paper));
+  }
+  .hk-coming-jp {
+    font-family: var(--jp);
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.35;
+    margin: 0;
+  }
+  .hk-coming-lead {
+    max-width: 560px;
+    margin: 16px 0 0;
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--ink-soft);
+  }
+  .hk-coming-lead .fp-en {
+    display: block;
+    margin-top: 8px;
+    font-size: 13.5px;
+  }
+  @media (max-width: 560px) {
+    .hk-coming-card {
+      padding: 28px 22px;
+    }
+    .hk-coming-jp {
+      font-size: 23px;
+    }
+  }
+</style>

@@ -13,15 +13,15 @@ export interface FeaturedGame {
 }
 
 export const GAME_FEATURED: FeaturedGame = {
-  jp: 'Kanji Drop',
-  sub: '落ちてくる漢字を組む',
-  en: 'Stack falling radicals into real kanji',
-  desc: 'テトリスと漢字の偏旁を掛け合わせたパズル。落ちてくる部首を組み合わせて文字を完成させる。1プレイおよそ1分、語彙が増えるほど強くなる。',
+  jp: 'ガチャ漢字',
+  sub: 'ガチャで部首を引いて組む',
+  en: 'Draw radicals from a gacha, build real kanji',
+  desc: 'ガチャで引いた部首・つくりを、ひらめきで組み合わせて漢字を作り出す、運と発見の快感を組み合わせた1〜2分のスナック型ゲーム。',
   descEn:
-    'Half tetromino, half kanji radical. Slot the falling parts together to complete characters. About a minute a round — and the more kanji you know, the better you do.',
+    'Draw radicals and components from a gacha and combine them by inspiration into real kanji — a one-to-two-minute snack-sized game of luck and discovery.',
   genre: 'Puzzle · パズル',
-  time: '~1 min',
-  controls: '← → ↓ / tap',
+  time: '1〜2 min',
+  controls: 'クリックのみ / click only',
   hue: '#f6d472',
   status: 'draft',
 };

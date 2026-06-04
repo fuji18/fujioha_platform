@@ -3,24 +3,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PortalTop from '@fujioha/ui/components/PortalTop.astro';
 import PortalFooter from '@fujioha/ui/components/PortalFooter.astro';
 import Hero from '../components/Hero.astro';
-import Featured from '../components/Featured.astro';
-import Cities from '../components/Cities.astro';
-import Themes from '../components/Themes.astro';
-import Recent from '../components/Recent.astro';
+import ComingSoon from '../components/ComingSoon.astro';
 import Companions from '../components/Companions.astro';
-import Local from '../components/Local.astro';
+// 現在このサイトは準備中。記事が整うまで、各セクション（Featured/Cities/
+// Themes/Recent/Local）は表に出さず、ComingSoon の案内のみを表示する。
 ---
 
 <BaseLayout>
   <div class="hk">
     <PortalTop sub="hokkaido" subJp="北海道の歩き方" />
     <Hero />
-    <Featured />
-    <Cities />
-    <Themes />
-    <Recent />
+    <ComingSoon />
     <Companions />
-    <Local />
     <PortalFooter
       sub="hokkaido"
       siblingSub="game"
