@@ -830,6 +830,21 @@ button {
   font-weight: 500;
   letter-spacing: 0.005em;
 }
+/* release 記事にサムネが付くときだけタイトルセルを flex 化（他行のレイアウトには不干渉）。 */
+.fp-feed-title-art {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.fp-feed-thumb {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 0 0 1px color-mix(in oklch, var(--ink) 10%, transparent);
+}
 .fp-feed-title-en {
   font-size: 13px;
   font-style: italic;
