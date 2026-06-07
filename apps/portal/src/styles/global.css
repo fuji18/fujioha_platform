@@ -498,6 +498,18 @@ button {
 .fp-pick-art {
   min-height: 360px;
   position: relative;
+  overflow: hidden;
+}
+.fp-pick-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.fp-pick-img[hidden] {
+  display: none;
 }
 .fp-grad-gradient1 {
   background:
@@ -784,6 +796,10 @@ button {
 .fp-feed-item:hover {
   background: color-mix(in oklch, var(--accent) 4%, transparent);
 }
+/* サムネのある行は背の高いサムネに合わせて縦中央で揃える（baseline だと崩れるため）。 */
+.fp-feed-item-art {
+  align-items: center;
+}
 .fp-feed-item:last-child {
   border-bottom: 0;
 }
@@ -829,6 +845,21 @@ button {
   font-family: var(--jp);
   font-weight: 500;
   letter-spacing: 0.005em;
+}
+/* release 記事にサムネが付くときだけタイトルセルを flex 化（他行のレイアウトには不干渉）。 */
+.fp-feed-title-art {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.fp-feed-thumb {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 0 0 1px color-mix(in oklch, var(--ink) 10%, transparent);
 }
 .fp-feed-title-en {
   font-size: 13px;

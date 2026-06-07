@@ -13,6 +13,8 @@ const updates = defineCollection({
     url: z.string().url(),
     /** 一覧表示用の短いラベル（'new' など）。 */
     date: z.string().default('new'),
+    /** release 記事のリードに出すサムネ画像（サイト相対）。任意。 */
+    image: z.string().optional(),
     publishedAt: z.string().date(),
   }),
 });

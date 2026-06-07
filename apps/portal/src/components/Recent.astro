@@ -23,7 +23,7 @@ const updates = await loadUpdates();
         {updates.map((it) => (
           <li>
             <a
-              class="fp-feed-item"
+              class={`fp-feed-item${it.kind === 'release' && it.image ? ' fp-feed-item-art' : ''}`}
               href={it.url}
               target="_blank"
               rel="noopener noreferrer"
@@ -34,7 +34,14 @@ const updates = await loadUpdates();
                 <span class="fp-en">{it.kind === 'post' ? 'post' : 'live'}</span>
               </span>
               <span class="fp-feed-src fp-mono fp-faint">{it.src}.</span>
-              <span class="fp-feed-title fp-jp">{it.jp}</span>
+              <span
+                class={`fp-feed-title fp-jp${it.kind === 'release' && it.image ? ' fp-feed-title-art' : ''}`}
+              >
+                {it.kind === 'release' && it.image && (
+                  <img class="fp-feed-thumb" src={it.image} alt="" loading="lazy" />
+                )}
+                {it.jp}
+              </span>
               <span class="fp-feed-title-en fp-en fp-mute">{it.en}</span>
             </a>
           </li>
