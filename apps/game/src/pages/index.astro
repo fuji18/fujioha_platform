@@ -1,4 +1,6 @@
 ---
+import { getCollection } from 'astro:content';
+import { buildItemListSchema } from '@fujioha/ui/structured-data';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PortalTop from '@fujioha/ui/components/PortalTop.astro';
 import PortalFooter from '@fujioha/ui/components/PortalFooter.astro';
@@ -6,9 +8,33 @@ import Hero from '../components/Hero.astro';
 import Featured from '../components/Featured.astro';
 import Shelf from '../components/Shelf.astro';
 import Note from '../components/Note.astro';
+
+// 公開済みかつ URL のあるゲームを ItemList(VideoGame) として構造化データ化する。
+const publishedGames = (await getCollection('games'))
+  .map((e) => e.data)
+  .filter((g) => g.status === 'published' && !!g.url)
+  .sort((a, b) => (b.publishedAt ?? '').localeCompare(a.publishedAt ?? ''));
+
+const gameListSchema =
+  publishedGames.length > 0
+    ? buildItemListSchema({
+        name: '公開中の Web ゲーム',
+        items: publishedGames.map((g) => ({
+          name: g.jp,
+          url: g.url as string,
+          item: {
+            '@type': 'VideoGame',
+            name: g.jp,
+            genre: g.genre,
+            url: g.url,
+            inLanguage: 'ja',
+          },
+        })),
+      })
+    : undefined;
 ---
 
-<BaseLayout>
+<BaseLayout structuredData={gameListSchema}>
   <div class="gm">
     <PortalTop sub="game" subJp="Web ゲーム" />
     <Hero />

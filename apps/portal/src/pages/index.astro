@@ -1,4 +1,5 @@
 ---
+import { buildItemListSchema } from '@fujioha/ui/structured-data';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TopBar from '../components/TopBar.astro';
 import Hero from '../components/Hero.astro';
@@ -8,11 +9,22 @@ import Alley from '../components/Alley.astro';
 import Recent from '../components/Recent.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { resolveMood } from '../lib/moods';
+import { loadUpdates } from '../lib/updates-source';
 
 const buildMood = resolveMood(new Date());
+
+// 「最近の更新」を ItemList として構造化データ化する（Recent と同じデータ源）。
+const updates = await loadUpdates();
+const recentListSchema =
+  updates.length > 0
+    ? buildItemListSchema({
+        name: '最近の更新',
+        items: updates.map((u) => ({ name: u.jp, url: u.url })),
+      })
+    : undefined;
 ---
 
-<BaseLayout>
+<BaseLayout structuredData={recentListSchema}>
   <div class={`fp fp-${buildMood}`} data-mood={buildMood} data-fp>
     <TopBar />
     <Hero />

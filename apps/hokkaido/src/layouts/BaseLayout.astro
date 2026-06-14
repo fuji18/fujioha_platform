@@ -8,11 +8,14 @@ import { buildWebSiteSchema } from '@fujioha/ui/structured-data';
 interface Props {
   title?: string;
   description?: string;
+  /** ページ固有の構造化データ。WebSite と統合して出力する（公開後に利用）。 */
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title = '北海道の歩き方 — hokkaido.fujioha.com',
   description = '地元の人が解説する、観光ガイドにない北海道。',
+  structuredData,
 } = Astro.props;
 
 // 現在は noindex のため SeoHead 側で JSON-LD は出力されないが、公開（noindex 解除）
@@ -22,6 +25,13 @@ const websiteSchema = buildWebSiteSchema({
   url: Astro.site?.href ?? 'https://hokkaido.fujioha.com',
   description,
 });
+
+const extraSchemas = Array.isArray(structuredData)
+  ? structuredData
+  : structuredData
+    ? [structuredData]
+    : [];
+const allSchemas = [websiteSchema, ...extraSchemas];
 ---
 
 <!doctype html>
@@ -61,7 +71,7 @@ const websiteSchema = buildWebSiteSchema({
       description={description}
       image="/og.png"
       noindex
-      structuredData={websiteSchema}
+      structuredData={allSchemas}
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
