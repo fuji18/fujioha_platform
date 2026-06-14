@@ -3,6 +3,7 @@ import '@fujioha/ui/styles/tokens.css';
 import '@fujioha/ui/styles/chrome.css';
 import '../styles/global.css';
 import SeoHead from '@fujioha/ui/components/SeoHead.astro';
+import { buildWebSiteSchema } from '@fujioha/ui/structured-data';
 
 interface Props {
   title?: string;
@@ -13,6 +14,14 @@ const {
   title = '北海道の歩き方 — hokkaido.fujioha.com',
   description = '地元の人が解説する、観光ガイドにない北海道。',
 } = Astro.props;
+
+// 現在は noindex のため SeoHead 側で JSON-LD は出力されないが、公開（noindex 解除）
+// 時に自動で構造化データが付くよう配線しておく。
+const websiteSchema = buildWebSiteSchema({
+  name: 'ふじおは — 北海道の歩き方',
+  url: Astro.site?.href ?? 'https://hokkaido.fujioha.com',
+  description,
+});
 ---
 
 <!doctype html>
@@ -47,7 +56,13 @@ const {
     </script>
     <title>{title}</title>
     {/* サイトは準備中のため検索インデックスさせない */}
-    <SeoHead title={title} description={description} image="/og.png" noindex />
+    <SeoHead
+      title={title}
+      description={description}
+      image="/og.png"
+      noindex
+      structuredData={websiteSchema}
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
       rel="alternate"
