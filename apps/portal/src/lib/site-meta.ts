@@ -13,6 +13,12 @@ export const GOVERNING_LAW = '日本法';
 export const LEGAL_UPDATED = '2026年6月7日';
 
 /**
+ * 法務ページの制定日（sitemap lastmod 用の W3C 日付）。
+ * 表示用の LEGAL_UPDATED と必ず同期させること。
+ */
+export const LEGAL_UPDATED_ISO = '2026-06-07';
+
+/**
  * お問い合わせ用 Google フォームの URL。
  * フォーム作成後にこの 1 行を実際の `https://forms.gle/...` に差し替える。
  * プレースホルダのままだと contact ページは「準備中」を表示する（リンク切れを出さない）。
