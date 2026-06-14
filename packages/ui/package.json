@@ -19,6 +19,7 @@
     "src/styles",
     "src/feed.ts",
     "src/sitemap.ts",
+    "src/structured-data.ts",
     "README.md"
   ],
   "exports": {
@@ -30,6 +31,7 @@
     "./styles/chrome.css": "./src/styles/chrome.css",
     "./feed": "./src/feed.ts",
     "./sitemap": "./src/sitemap.ts",
+    "./structured-data": "./src/structured-data.ts",
     "./package.json": "./package.json"
   },
   "peerDependencies": {

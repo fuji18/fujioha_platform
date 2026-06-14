@@ -3,6 +3,7 @@ import '@fujioha/ui/styles/tokens.css';
 import '@fujioha/ui/styles/chrome.css';
 import '../styles/global.css';
 import SeoHead from '@fujioha/ui/components/SeoHead.astro';
+import { buildWebSiteSchema } from '@fujioha/ui/structured-data';
 
 interface Props {
   title?: string;
@@ -13,6 +14,12 @@ const {
   title = 'Web ゲーム — game.fujioha.com',
   description = 'ブラウザで遊べる小さなゲームの棚。',
 } = Astro.props;
+
+const websiteSchema = buildWebSiteSchema({
+  name: 'ふじおは — Web ゲーム',
+  url: Astro.site?.href ?? 'https://game.fujioha.com',
+  description,
+});
 ---
 
 <!doctype html>
@@ -46,7 +53,12 @@ const {
       }
     </script>
     <title>{title}</title>
-    <SeoHead title={title} description={description} image="/og.png" />
+    <SeoHead
+      title={title}
+      description={description}
+      image="/og.png"
+      structuredData={websiteSchema}
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
       rel="alternate"

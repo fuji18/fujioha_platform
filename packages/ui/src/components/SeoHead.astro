@@ -11,10 +11,41 @@ interface Props {
   /** 準備中などで検索インデックスさせたくない場合 true。 */
   noindex?: boolean;
   siteName?: string;
+  /**
+   * Schema.org 構造化データ（JSON-LD）。1 つでも配列でも渡せる。
+   * `<script type="application/ld+json">` として出力する。noindex 時は出力しない。
+   */
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description, image, noindex = false, siteName = 'fujioha' } =
-  Astro.props;
+const {
+  title,
+  description,
+  image,
+  noindex = false,
+  siteName = 'fujioha',
+  structuredData,
+} = Astro.props;
+
+// noindex ページはインデックスされないため構造化データを出さない。
+const jsonLdNodes =
+  !noindex && structuredData
+    ? Array.isArray(structuredData)
+      ? structuredData
+      : [structuredData]
+    : [];
+
+/**
+ * JSON-LD を <script> に埋め込む際の安全なシリアライズ。
+ * `<`/`>`/`&` を Unicode エスケープし、データ値に `</script>` 等が混入しても
+ * スクリプトタグを終端させない（動的コンテンツを扱う将来の拡張に備える）。
+ */
+function serializeJsonLd(node: Record<string, unknown>): string {
+  return JSON.stringify(node)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/&/g, '\\u0026');
+}
 
 const site = Astro.site;
 const canonical = site
@@ -36,6 +67,7 @@ const ogImage = image
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
 <meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="ja_JP" />
 {
   ogImage && (
     <>
@@ -51,3 +83,9 @@ const ogImage = image
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+{
+  jsonLdNodes.map((node) => (
+    <script type="application/ld+json" set:html={serializeJsonLd(node)} />
+  ))
+}
