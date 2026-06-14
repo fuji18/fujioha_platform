@@ -6,11 +6,14 @@ import { buildWebSiteSchema } from '@fujioha/ui/structured-data';
 interface Props {
   title?: string;
   description?: string;
+  /** ページ固有の構造化データ（ItemList / BreadcrumbList など）。WebSite と統合して出力する。 */
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title = 'fujioha.com — おはよう',
   description = '個人がつくる小さなサイトの通り。北海道の歩き方と、思いつきの Web ゲーム。',
+  structuredData,
 } = Astro.props;
 
 const websiteSchema = buildWebSiteSchema({
@@ -18,6 +21,13 @@ const websiteSchema = buildWebSiteSchema({
   url: Astro.site?.href ?? 'https://fujioha.com',
   description,
 });
+
+const extraSchemas = Array.isArray(structuredData)
+  ? structuredData
+  : structuredData
+    ? [structuredData]
+    : [];
+const allSchemas = [websiteSchema, ...extraSchemas];
 ---
 
 <!doctype html>
@@ -55,7 +65,7 @@ const websiteSchema = buildWebSiteSchema({
       title={title}
       description={description}
       image="/og.png"
-      structuredData={websiteSchema}
+      structuredData={allSchemas}
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link

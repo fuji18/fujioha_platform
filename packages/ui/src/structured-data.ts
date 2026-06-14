@@ -61,3 +61,69 @@ export function buildWebSiteSchema(
     publisher: person,
   };
 }
+
+/** ItemList の 1 要素。 */
+export interface ListItemInput {
+  /** 表示名。 */
+  name: string;
+  /** リンク先 URL（外部可）。 */
+  url: string;
+  /** ListItem.item に入れる詳細ノード（例: VideoGame）。任意。 */
+  item?: Record<string, unknown>;
+}
+
+/**
+ * `ItemList` スキーマを生成する。カタログ的な一覧ページ（公開ゲーム一覧、
+ * 更新一覧など）の構造を検索エンジンに伝える。要素が 0 のときは呼び出し側で
+ * 出力可否を判断する想定（空リストは出さない）。
+ */
+export function buildItemListSchema(input: {
+  items: readonly ListItemInput[];
+  /** リストの名前。任意。 */
+  name?: string;
+  /** 安定参照用 @id。任意。 */
+  id?: string;
+}): Record<string, unknown> {
+  const node: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: input.items.map((it, index) => {
+      const li: Record<string, unknown> = {
+        '@type': 'ListItem',
+        position: index + 1,
+        name: it.name,
+        url: it.url,
+      };
+      if (it.item) li.item = it.item;
+      return li;
+    }),
+  };
+  if (input.id) node['@id'] = input.id;
+  if (input.name) node.name = input.name;
+  return node;
+}
+
+/** BreadcrumbList の 1 要素。 */
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+/**
+ * `BreadcrumbList` スキーマを生成する。パンくず（例: ホーム > About）を
+ * 検索結果に伝える。フラットなサイトでは 2 階層（Home > Page）になる。
+ */
+export function buildBreadcrumbSchema(
+  items: readonly BreadcrumbItem[],
+): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((it, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: it.name,
+      item: it.url,
+    })),
+  };
+}
