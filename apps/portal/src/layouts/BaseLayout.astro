@@ -1,16 +1,33 @@
 ---
 import '../styles/global.css';
 import SeoHead from '@fujioha/ui/components/SeoHead.astro';
+import { buildWebSiteSchema } from '@fujioha/ui/structured-data';
 
 interface Props {
   title?: string;
   description?: string;
+  /** ページ固有の構造化データ（ItemList / BreadcrumbList など）。WebSite と統合して出力する。 */
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title = 'fujioha.com — おはよう',
   description = '個人がつくる小さなサイトの通り。北海道の歩き方と、思いつきの Web ゲーム。',
+  structuredData,
 } = Astro.props;
+
+const websiteSchema = buildWebSiteSchema({
+  name: 'ふじおは',
+  url: Astro.site?.href ?? 'https://fujioha.com',
+  description,
+});
+
+const extraSchemas = Array.isArray(structuredData)
+  ? structuredData
+  : structuredData
+    ? [structuredData]
+    : [];
+const allSchemas = [websiteSchema, ...extraSchemas];
 ---
 
 <!doctype html>
@@ -44,7 +61,12 @@ const {
       }
     </script>
     <title>{title}</title>
-    <SeoHead title={title} description={description} image="/og.png" />
+    <SeoHead
+      title={title}
+      description={description}
+      image="/og.png"
+      structuredData={allSchemas}
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
       rel="alternate"

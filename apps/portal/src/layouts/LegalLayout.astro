@@ -4,6 +4,7 @@ import TopBar from '../components/TopBar.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { resolveMood } from '../lib/moods';
 import { LEGAL_UPDATED } from '../lib/site-meta';
+import { buildBreadcrumbSchema } from '@fujioha/ui/structured-data';
 
 interface Props {
   /** <title> 用。 */
@@ -22,9 +23,24 @@ interface Props {
 
 const { title, description, eyebrow, jp, en, showUpdated = true } = Astro.props;
 const buildMood = resolveMood(new Date());
+
+// パンくず（Home > 当該ページ）。ページ名は eyebrow の "·" 以降から導出する。
+const crumbName = eyebrow.split('·').pop()?.trim() || eyebrow;
+const home = Astro.site?.href ?? 'https://fujioha.com';
+const current = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).href
+  : Astro.url.pathname;
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: 'ホーム', url: home },
+  { name: crumbName, url: current },
+]);
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  structuredData={breadcrumbSchema}
+>
   <div class={`fp fp-${buildMood}`} data-mood={buildMood} data-fp>
     <TopBar />
 

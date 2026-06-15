@@ -3,11 +3,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import TopBar from '../components/TopBar.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { resolveMood } from '../lib/moods';
+import { buildBreadcrumbSchema } from '@fujioha/ui/structured-data';
 
 const buildMood = resolveMood(new Date());
+
+const home = Astro.site?.href ?? 'https://fujioha.com';
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: 'ホーム', url: home },
+  {
+    name: '日誌',
+    url: Astro.site ? new URL('/journal', Astro.site).href : '/journal',
+  },
+]);
 ---
 
-<BaseLayout title="fujioha.com — Journal / 日誌">
+<BaseLayout
+  title="fujioha.com — Journal / 日誌"
+  structuredData={breadcrumbSchema}
+>
   <div class={`fp fp-${buildMood}`} data-mood={buildMood} data-fp>
     <TopBar />
 

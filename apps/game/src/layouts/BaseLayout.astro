@@ -3,16 +3,33 @@ import '@fujioha/ui/styles/tokens.css';
 import '@fujioha/ui/styles/chrome.css';
 import '../styles/global.css';
 import SeoHead from '@fujioha/ui/components/SeoHead.astro';
+import { buildWebSiteSchema } from '@fujioha/ui/structured-data';
 
 interface Props {
   title?: string;
   description?: string;
+  /** ページ固有の構造化データ（ItemList など）。WebSite と統合して出力する。 */
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title = 'Web ゲーム — game.fujioha.com',
   description = 'ブラウザで遊べる小さなゲームの棚。',
+  structuredData,
 } = Astro.props;
+
+const websiteSchema = buildWebSiteSchema({
+  name: 'ふじおは — Web ゲーム',
+  url: Astro.site?.href ?? 'https://game.fujioha.com',
+  description,
+});
+
+const extraSchemas = Array.isArray(structuredData)
+  ? structuredData
+  : structuredData
+    ? [structuredData]
+    : [];
+const allSchemas = [websiteSchema, ...extraSchemas];
 ---
 
 <!doctype html>
@@ -46,7 +63,12 @@ const {
       }
     </script>
     <title>{title}</title>
-    <SeoHead title={title} description={description} image="/og.png" />
+    <SeoHead
+      title={title}
+      description={description}
+      image="/og.png"
+      structuredData={allSchemas}
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
       rel="alternate"
