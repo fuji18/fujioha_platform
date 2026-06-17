@@ -1,0 +1,16 @@
+{
+  "id": "kanji-gattai",
+  "jp": "漢字合体ガチャ",
+  "en": "Kanji Combine Gacha",
+  "genre": "パズル",
+  "genreEn": "Puzzle",
+  "time": "1〜2 min",
+  "tag": "new",
+  "icon": "kanji",
+  "hue": "#c0392b",
+  "url": "https://kanji-gattai.fujioha.com",
+  "status": "published",
+  "featured": true,
+  "publishedAt": "2026-06-17",
+  "image": "/games/kanji-gattai.png"
+}
